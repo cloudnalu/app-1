@@ -27,13 +27,14 @@ function App() {
               direction="row"
               alignItems="center"
               justifyContent="center"
+              display={["none", "none", "flex"]}
             >
               <Image src={cloudNaluLogo} alt="Cloud Nalu Logo" maxH={300} />
             </Flex>
             <Box
               backgroundColor="white"
               height={["100vh", "90vh"]}
-              minWidth={["100vw", 400]}
+              width={["100vw", 400]}
               borderRadius={[0, 40]}
               overflow="auto"
               borderColor="primary.800"

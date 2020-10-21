@@ -35,7 +35,9 @@ export const Layout = ({ children, title, showBack = true }) => {
 
         <Box w={20} />
       </Stack>
-      {children}
+      <Flex direction="column" flexGrow={1} overflowY="scroll">
+        {children}
+      </Flex>
     </Flex>
   );
 };
