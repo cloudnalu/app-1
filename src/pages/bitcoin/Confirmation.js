@@ -1,16 +1,18 @@
 import React, { useContext } from "react";
-import USDContext from "./USDContext";
 import { Layout } from "../../components/Layout";
 import { Flex } from "@chakra-ui/core";
-import { useHistory } from "react-router-dom";
 import { ConfirmationBox } from "../../components/ConfirmationBox";
+import { useHistory } from "react-router-dom";
+import BitcoinContext from "./BitcoinContext";
 
 export const Confirmation = () => {
-  const { formData, transactionType, onConfirm } = useContext(USDContext);
   const history = useHistory();
+  const { address, amountBTC, amountUSD, account } = useContext(BitcoinContext);
+
+  const onConfirm = () => console.log("confirm");
 
   return (
-    <Layout title={`${transactionType} USD`.toUpperCase()}>
+    <Layout title="BUY BITCOIN">
       <Flex
         backgroundColor="white"
         flexGrow={1}
@@ -18,9 +20,13 @@ export const Confirmation = () => {
         alignItems="center"
       >
         <ConfirmationBox
-          heading={`SENDING $${formData?.amount} USD`}
-          lines={[`From $${formData?.from}`, `To $${formData?.to}`]}
-          onGoBack={() => history.back()}
+          heading={`PURCHASING ${amountBTC} BTC`}
+          lines={[
+            `For $${amountUSD} USD`,
+            `From account ${account}`,
+            `To ${address}`,
+          ]}
+          onGoBack={() => history.goBack()}
           onConfirm={() => {
             onConfirm();
             history.push("/usd/done");

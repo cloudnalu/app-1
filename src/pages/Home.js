@@ -1,50 +1,11 @@
 import React from "react";
 import { FaUserAlt } from "react-icons/fa";
 import { BiDollar, BiShuffle, BiPlus, BiListUl } from "react-icons/bi";
-import { Flex, Box, Heading, Text, Stack } from "@chakra-ui/core";
 import { Layout } from "../components/Layout";
 import { useHistory } from "react-router-dom";
 import { logout } from "../store/user";
 import { useDispatch, useSelector } from "react-redux";
-
-const HomeRowItem = ({
-  backgroundColor,
-  onClick,
-  icon,
-  heading,
-  subheading,
-}) => (
-  <Flex
-    backgroundColor={backgroundColor}
-    w="100%"
-    px={10}
-    py={8}
-    cursor="pointer"
-    onClick={onClick}
-  >
-    <Stack mr={5}>
-      <Box backgroundColor="primary.800" p={5} borderRadius={45}>
-        {icon}
-      </Box>
-    </Stack>
-    <Stack justifyContent="center">
-      <Stack ml={2}>
-        <Heading
-          size="lg"
-          pb={0}
-          color="primary.800"
-          style={{ marginBottom: 0 }}
-          textAlign="left"
-        >
-          {heading}
-        </Heading>
-        <Text fontSize="xs" textAlign="left" color="primary.800">
-          {subheading}
-        </Text>
-      </Stack>
-    </Stack>
-  </Flex>
-);
+import { HomeRowItem } from "../components/HomeRowItem";
 
 export const Home = () => {
   const history = useHistory();
@@ -89,17 +50,19 @@ export const Home = () => {
           />
           <HomeRowItem
             backgroundColor="#F4EDEA"
-            onClick={() => console.log("hi")}
+            onClick={() => history.push("/bitcoin")}
             icon={<BiShuffle size={50} style={{ color: "white" }} />}
             heading="BITCOIN"
             subheading="BUY / SELL"
           />
+          {/* TODO: unsure what this button is meant to link to */}
           <HomeRowItem
             backgroundColor="#f4d8ca"
-            onClick={() => console.log("hi")}
+            onClick={() => console.log("not implemented")}
             icon={<BiPlus size={50} style={{ color: "white" }} />}
             heading="SERVICES"
             subheading="BANKING, CUSTODY & MORE"
+            disabled
           />
         </>
       )}

@@ -9,28 +9,24 @@ import { Step3 } from "./Step3";
 
 export const SignUpRouter = () => {
   return (
-    <Switch>
-      <Route path="/signup">
-        <SignUpContextProvider>
-          <Switch>
-            <Route exact path="/signup">
-              <SignUp />
-            </Route>
-            <Route path="/signup/1">
-              <Step1 />
-            </Route>
-            <Route path="/signup/2">
-              <Step2 />
-            </Route>
-            <Route path="/signup/verification">
-              <Verification />
-            </Route>
-            <Route path="/signup/3">
-              <Step3 />
-            </Route>
-          </Switch>
-        </SignUpContextProvider>
-      </Route>
-    </Switch>
+    <SignUpContextProvider>
+      <Switch>
+        <Route exact path="/signup">
+          <SignUp />
+        </Route>
+        <Route path="/signup/1">
+          <Step1 />
+        </Route>
+        <Route path="/signup/2">
+          <Step2 />
+        </Route>
+        <Route path="/signup/verification">
+          <Verification />
+        </Route>
+        <Route path="/signup/3">
+          <Step3 />
+        </Route>
+      </Switch>
+    </SignUpContextProvider>
   );
 };

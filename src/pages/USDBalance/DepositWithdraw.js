@@ -97,6 +97,7 @@ export const DepositWithdraw = () => {
           ref={register({ required: "This field is required" })}
           name="from"
           focusBorderColor="primary.800"
+          variant="filled"
         >
           {(type === "deposit" ? bankAccounts : cloudNaluAccounts).map(
             ({ value, text }) => (
@@ -124,6 +125,7 @@ export const DepositWithdraw = () => {
           ref={register({ required: "This field is required" })}
           name="to"
           focusBorderColor="primary.800"
+          variant="filled"
         >
           {(type === "deposit" ? cloudNaluAccounts : bankAccounts).map(
             ({ value, text }) => (

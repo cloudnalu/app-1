@@ -5,6 +5,7 @@ import { SignUpRouter } from "./pages/auth/signUp/SignUpRouter";
 import { LogIn } from "./pages/auth/LogIn";
 import { USDRouter } from "./pages/USDBalance/USDRouter";
 import { Transactions } from "./pages/USDTransactions/Transactions";
+import { BitcoinRouter } from "./pages/bitcoin/BitcoinRouter";
 
 export const Router = () => {
   return (
@@ -24,6 +25,9 @@ export const Router = () => {
         </Route>
         <Route path="/transactions">
           <Transactions />
+        </Route>
+        <Route path="/bitcoin">
+          <BitcoinRouter />
         </Route>
       </Switch>
     </BrowserRouter>

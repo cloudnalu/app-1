@@ -7,22 +7,18 @@ import { Done } from "./Done";
 
 export const USDRouter = () => {
   return (
-    <Switch>
-      <Route path="/usd">
-        <USDContextProvider>
-          <Switch>
-            <Route path="/usd" exact>
-              <DepositWithdraw />
-            </Route>
-            <Route path="/usd/confirm">
-              <Confirmation />
-            </Route>
-            <Route path="/usd/done">
-              <Done />
-            </Route>
-          </Switch>
-        </USDContextProvider>
-      </Route>
-    </Switch>
+    <USDContextProvider>
+      <Switch>
+        <Route path="/usd" exact>
+          <DepositWithdraw />
+        </Route>
+        <Route path="/usd/confirm">
+          <Confirmation />
+        </Route>
+        <Route path="/usd/done">
+          <Done />
+        </Route>
+      </Switch>
+    </USDContextProvider>
   );
 };

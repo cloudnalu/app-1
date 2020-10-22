@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import { Layout } from "../../components/Layout";
 import USDContext from "./USDContext";
 import { useHistory } from "react-router-dom";
-import { Flex, Heading, Text, Stack, Icon, Box, Button } from "@chakra-ui/core";
-import "./done.css";
+import { Flex, Heading, Text, Stack, Icon, Button } from "@chakra-ui/core";
+import { DoneBox } from "../../components/DoneBox";
 
 export const Done = () => {
   const { formData, transactionType, error } = useContext(USDContext);
@@ -19,16 +19,7 @@ export const Done = () => {
         px={10}
         pt={10}
       >
-        <Stack
-          className="done-box"
-          w="100%"
-          h={500}
-          borderRadius={5}
-          alignItems="center"
-          justifyContent="space-around"
-          pt={100}
-          mb={10}
-        >
+        <DoneBox>
           <Heading color="primary.800">${formData.amount}</Heading>
           <Text fontWeight="bold" color="primary.800">
             You have sent ${formData.amount} USD
@@ -48,8 +39,12 @@ export const Done = () => {
           >
             <Icon name="check" color="primary.800" size={6} />
           </Flex>
-        </Stack>
-        <Button variantColor="primary" mt={5} onClick={() => history.push("/")}>
+        </DoneBox>
+        <Button
+          variantColor="primary"
+          mt={5}
+          onClick={() => history.push("/transactions")}
+        >
           VIEW TRANSACTIONS
         </Button>
         <Button
