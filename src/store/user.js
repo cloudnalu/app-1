@@ -27,10 +27,10 @@ export default slice.reducer;
 // Actions
 const { loginSuccess, logoutSuccess } = slice.actions;
 
-export const login = ({ username, password }) => async (dispatch) => {
+export const login = ({ phoneNumber, password }) => async (dispatch) => {
   try {
-    // const res = await api.post('/api/auth/login/', { username, password })
-    dispatch(loginSuccess({ username }));
+    // TODO: authorize the user
+    dispatch(loginSuccess({ phoneNumber }));
   } catch (e) {
     return console.error(e.message);
   }
