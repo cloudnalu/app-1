@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Layout } from "../../components/Layout";
 import { Heading, Stack, Text, Button, Input } from "@chakra-ui/core";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
+import SignUpContext from "./SignUpContext";
 
 export const SignUp = () => {
-  const { register, handleSubmit, watch, errors } = useForm();
   const history = useHistory();
 
+  const { register, handleSubmit, errors } = useForm();
+  const { setSignUpData } = useContext(SignUpContext);
+
   const onSubmit = (data) => {
-    console.log(data);
+    setSignUpData(data);
     history.push("/signup/1");
   };
 
@@ -35,17 +38,17 @@ export const SignUp = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <Stack pt={5}>
             <Input
-              name="example"
+              name="phoneNumber"
               type="tel"
               ref={register({ required: true })}
               placeholder="phone number"
               variant="filled"
               focusBorderColor="primary.800"
               variantColor="primary"
-              isInvalid={!!errors.example}
+              isInvalid={!!errors.phoneNumber}
             />
 
-            {errors.example && (
+            {errors.phoneNumber && (
               <Text color="red.500">This field is required</Text>
             )}
 
@@ -71,7 +74,6 @@ export const SignUp = () => {
         justifyContent="center"
         onClick={() => alert("open login form")}
         borderRadius={0}
-        flexGrow={1}
         width="100%"
       >
         <Heading size="sm" color="primary.800">

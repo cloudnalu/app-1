@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Layout } from "../../components/Layout";
 import {
   Stack,
@@ -10,22 +10,41 @@ import {
   FormLabel,
   FormHelperText,
   Icon,
+  InputGroup,
+  InputRightElement,
 } from "@chakra-ui/core";
 import { useHistory } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 import DatePicker from "../../components/DatePicker";
 import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
 import "../../components/Dropdown/dropdown.css";
+import { isEmail } from "validator";
+import SignUpContext from "./SignUpContext";
 
 export const Step1 = () => {
-  const { register, handleSubmit, watch, errors, control } = useForm();
   const history = useHistory();
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    errors,
+    control,
+    getValues,
+  } = useForm();
+
+  const { setSignUpData, signUpData } = useContext(SignUpContext);
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmationPassword, setShowConfirmationPassword] = useState(
+    false
+  );
 
   const country = watch("country", "");
 
   const onSubmit = (data) => {
-    console.log(data);
-    history.push("/signup/1");
+    setSignUpData((d) => ({ ...d, ...data }));
+    history.push("/signup/2");
   };
 
   return (
@@ -35,12 +54,13 @@ export const Step1 = () => {
         <Text fontSize="xl" color="primary.800">
           Tell us more info about yourself
         </Text>
+        <p>{JSON.stringify(signUpData)}</p>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Stack pt={5}>
+          <Stack pt={5} pb={30}>
             <FormControl>
               <Stack isInline>
                 <FormLabel htmlFor="name" fontSize="sm" color="primary.800">
-                  Name
+                  Full Name
                 </FormLabel>
               </Stack>
 
@@ -71,7 +91,11 @@ export const Step1 = () => {
               <Input
                 name="email"
                 type="email"
-                ref={register({ required: true })}
+                ref={register({
+                  required: true,
+                  validate: (input) =>
+                    isEmail(input) || <span>Email is invalid</span>,
+                })}
                 placeholder="email"
                 variant="filled"
                 focusBorderColor="primary.800"
@@ -200,6 +224,99 @@ export const Step1 = () => {
               <FormHelperText>
                 {errors.region && (
                   <Text color="red.500">This field is required</Text>
+                )}
+              </FormHelperText>
+            </FormControl>
+
+            <FormControl>
+              <Stack isInline>
+                <FormLabel htmlFor="password" fontSize="sm" color="primary.800">
+                  Password
+                </FormLabel>
+              </Stack>
+
+              <InputGroup size="md">
+                <Input
+                  pr="4.5rem"
+                  type={showPassword ? "text" : "password"}
+                  placeholder="enter password"
+                  name="password"
+                  ref={register({
+                    required: "This field is required",
+                    minLength: {
+                      value: 8,
+                      message: "Password must be at least 8 characters",
+                    },
+                  })}
+                  variant="filled"
+                />
+                <InputRightElement width="4.5rem">
+                  <Button
+                    h="1.75rem"
+                    size="sm"
+                    onClick={() => setShowPassword((v) => !v)}
+                    variantColor="primary"
+                    backgroundColor="primary.800"
+                  >
+                    {showPassword ? "Hide" : "Show"}
+                  </Button>
+                </InputRightElement>
+              </InputGroup>
+
+              <FormHelperText>
+                {errors.password && (
+                  <Text color="red.500">{errors.password.message}</Text>
+                )}
+              </FormHelperText>
+            </FormControl>
+
+            <FormControl>
+              <Stack isInline>
+                <FormLabel
+                  htmlFor="confirmPassword"
+                  fontSize="sm"
+                  color="primary.800"
+                >
+                  Confirm Password
+                </FormLabel>
+              </Stack>
+
+              <InputGroup size="md">
+                <Input
+                  pr="4.5rem"
+                  type={showConfirmationPassword ? "text" : "password"}
+                  placeholder="confirm password"
+                  name="confirmPassword"
+                  ref={register({
+                    required: "This field is required",
+                    minLength: {
+                      value: 8,
+                      message: "Password must be at least 8 characters",
+                    },
+                    validate: (value) =>
+                      // value is from confirm and watch will return value from password
+                      value === getValues("password") || (
+                        <span>Password fields don't match</span>
+                      ),
+                  })}
+                  variant="filled"
+                />
+                <InputRightElement width="4.5rem">
+                  <Button
+                    h="1.75rem"
+                    size="sm"
+                    onClick={() => setShowConfirmationPassword((v) => !v)}
+                    variantColor="primary"
+                    backgroundColor="primary.800"
+                  >
+                    {showConfirmationPassword ? "Hide" : "Show"}
+                  </Button>
+                </InputRightElement>
+              </InputGroup>
+
+              <FormHelperText>
+                {errors.confirmPassword && (
+                  <Text color="red.500">{errors.confirmPassword.message}</Text>
                 )}
               </FormHelperText>
             </FormControl>

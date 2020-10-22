@@ -2,11 +2,16 @@ import React from "react";
 import { Box, Flex, Stack, Heading, Button, Icon } from "@chakra-ui/core";
 import { useHistory } from "react-router-dom";
 
-export const Layout = ({ children, title, showBack = true }) => {
+export const Layout = ({
+  children,
+  title,
+  showBack = true,
+  backgroundColor = "primary.800",
+}) => {
   const history = useHistory();
   return (
     <Flex
-      backgroundColor="primary.800"
+      backgroundColor={backgroundColor}
       h="100%"
       w="100%"
       style={{ marginBottom: 0 }}

@@ -40,6 +40,7 @@ function App() {
               borderColor="primary.800"
               borderStyle="solid"
               borderWidth={[0, 1]}
+              boxShadow={["none", "0px 0px 10px -2px rgba(2,85,85,1);"]}
             >
               <Router />
             </Box>
