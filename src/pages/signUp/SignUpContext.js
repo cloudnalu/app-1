@@ -1,5 +1,7 @@
 import React, { createContext, useState, useCallback } from "react";
 import { useToast } from "@chakra-ui/core";
+import { login } from "../../store/user";
+import { useDispatch } from "react-redux";
 
 const SignUpContext = createContext({});
 export default SignUpContext;
@@ -9,6 +11,8 @@ export const SignUpContextProvider = ({ children }) => {
 
   const [signUpData, setSignUpData] = useState({});
   const [verified, setVerified] = useState(null);
+
+  const dispatch = useDispatch();
 
   const submitForVerification = useCallback(async () => {
     try {
@@ -22,6 +26,8 @@ export const SignUpContextProvider = ({ children }) => {
 
       setVerified(result);
       if (result) {
+        // if the account was verified and created successfully, log the user in
+        dispatch(login({ phoneNumber: signUpData.phoneNumber }));
         toast({
           title: "Account verified.",
           description: "You may now use our services.",
@@ -51,7 +57,7 @@ export const SignUpContextProvider = ({ children }) => {
         position: "bottom-right",
       });
     }
-  }, [toast]);
+  }, [dispatch, signUpData.phoneNumber, toast]);
 
   return (
     <SignUpContext.Provider

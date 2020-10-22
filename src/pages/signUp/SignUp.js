@@ -72,7 +72,7 @@ export const SignUp = () => {
         variantColor="primary"
         height="4em"
         justifyContent="center"
-        onClick={() => alert("open login form")}
+        onClick={() => history.push("/login")}
         borderRadius={0}
         width="100%"
       >

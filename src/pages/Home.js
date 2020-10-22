@@ -1,14 +1,24 @@
 import React from "react";
 import { FaUserAlt } from "react-icons/fa";
-import { Flex, Box, Heading, Text, Stack } from "@chakra-ui/core";
+import { Flex, Box, Heading, Text, Stack, Button } from "@chakra-ui/core";
 import { Layout } from "../components/Layout";
 import { useHistory } from "react-router-dom";
-
+import { logout } from "../store/user";
+import { useDispatch, useSelector } from "react-redux";
 export const Home = () => {
   const history = useHistory();
 
+  const { user } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
   return (
     <Layout showBack={false}>
+      {user && (
+        <div>
+          Hi, {user.phoneNumber}!
+          <Button onClick={() => dispatch(logout())}>Logout</Button>
+        </div>
+      )}
       <Flex
         backgroundColor="#c6f5f4"
         w="100%"
