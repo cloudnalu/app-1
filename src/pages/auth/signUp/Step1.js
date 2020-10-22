@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Layout } from "../../components/Layout";
+import { Layout } from "../../../components/Layout";
 import {
   Stack,
   Heading,
@@ -15,9 +15,9 @@ import {
 } from "@chakra-ui/core";
 import { useHistory } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
-import DatePicker from "../../components/DatePicker";
+import DatePicker from "../../../components/DatePicker";
 import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
-import "../../components/Dropdown/dropdown.css";
+import "../../../components/Dropdown/dropdown.css";
 import { isEmail } from "validator";
 import SignUpContext from "./SignUpContext";
 

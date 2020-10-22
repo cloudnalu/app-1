@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Layout } from "../components/Layout";
+import { Layout } from "../../components/Layout";
 import {
   Heading,
   Stack,
@@ -13,7 +13,7 @@ import {
   InputGroup,
 } from "@chakra-ui/core";
 import { useForm } from "react-hook-form";
-import { login } from "../store/user";
+import { login } from "../../store/user";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
@@ -25,6 +25,7 @@ export const LogIn = () => {
   const history = useHistory();
 
   const onSubmit = (data) => {
+    // TODO: authorise user within the login function in ../store/users
     dispatch(login({ phoneNumber: data.phoneNumber }));
     history.push("/");
   };

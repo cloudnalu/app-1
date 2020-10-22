@@ -1,6 +1,6 @@
 import React, { createContext, useState, useCallback } from "react";
 import { useToast } from "@chakra-ui/core";
-import { login } from "../../store/user";
+import { login } from "../../../store/user";
 import { useDispatch } from "react-redux";
 
 const SignUpContext = createContext({});

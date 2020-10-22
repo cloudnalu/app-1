@@ -1,6 +1,6 @@
 import React from "react";
 import { FaUserAlt } from "react-icons/fa";
-import { BiDollar, BiShuffle, BiPlus } from "react-icons/bi";
+import { BiDollar, BiShuffle, BiPlus, BiListUl } from "react-icons/bi";
 import { Flex, Box, Heading, Text, Stack } from "@chakra-ui/core";
 import { Layout } from "../components/Layout";
 import { useHistory } from "react-router-dom";
@@ -18,7 +18,7 @@ const HomeRowItem = ({
     backgroundColor={backgroundColor}
     w="100%"
     px={10}
-    py={10}
+    py={8}
     cursor="pointer"
     onClick={onClick}
   >
@@ -75,13 +75,20 @@ export const Home = () => {
         <>
           <HomeRowItem
             backgroundColor="#00bab9"
-            onClick={() => console.log("hi")}
+            onClick={() => history.push("/usd")}
             icon={<BiDollar size={50} style={{ color: "white" }} />}
             heading="USD BALANCE"
             subheading="DEPOSITS / WITHDRAWALS"
           />
           <HomeRowItem
             backgroundColor="#00a6ba"
+            onClick={() => history.push("/transactions")}
+            icon={<BiListUl size={50} style={{ color: "white" }} />}
+            heading="USD TRANSACTIONS"
+            subheading="TRANSACTION HISTORY"
+          />
+          <HomeRowItem
+            backgroundColor="#F4EDEA"
             onClick={() => console.log("hi")}
             icon={<BiShuffle size={50} style={{ color: "white" }} />}
             heading="BITCOIN"

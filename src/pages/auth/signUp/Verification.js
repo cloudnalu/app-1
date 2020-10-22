@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Flex, Heading, Text, Stack, Button, Icon } from "@chakra-ui/core";
-import { Layout } from "../../components/Layout";
+import { Layout } from "../../../components/Layout";
 import SignUpContext from "./SignUpContext";
 import { useHistory } from "react-router-dom";
 

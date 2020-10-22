@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Layout } from "../../components/Layout";
+import { Layout } from "../../../components/Layout";
 import { Heading, Stack, Text, Button, Input } from "@chakra-ui/core";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";

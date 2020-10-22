@@ -1,7 +1,7 @@
 import React from "react";
-import { Layout } from "../../components/Layout";
+import { Layout } from "../../../components/Layout";
 import { Stack, Heading, Text, Button, Box } from "@chakra-ui/core";
-import { ReactComponent as PlaidLogo } from "../../assets/plaidLogo.svg";
+import { ReactComponent as PlaidLogo } from "../../../assets/plaidLogo.svg";
 import { useHistory } from "react-router-dom";
 
 export const Step3 = () => {

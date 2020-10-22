@@ -1,0 +1,10 @@
+.done-box {
+  background-color: #00bab9;
+  /* opacity: 0.6; */
+  background-image: repeating-radial-gradient(
+      circle at 0 0,
+      transparent 0,
+      #00baba57 34px
+    ),
+    repeating-linear-gradient(#ffffff55, #ffffff);
+}
