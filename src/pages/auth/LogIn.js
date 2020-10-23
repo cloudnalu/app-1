@@ -89,6 +89,7 @@ export const LogIn = () => {
                     },
                   })}
                   variant="filled"
+                  focusBorderColor="primary.800"
                 />
                 <InputRightElement width="4.5rem">
                   <Button

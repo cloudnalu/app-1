@@ -23,17 +23,22 @@ export const Layout = ({
   return (
     <Flex
       backgroundColor={backgroundColor}
-      h="100%"
+      h={["100%"]}
+      minH={["-webkit-fill-available", "unset"]}
       w="100%"
       style={{ marginBottom: 0 }}
       flexDir="column"
     >
       <Stack
         height="3em"
-        mt="1em"
+        py="1em"
         isInline
         alignItems="center"
         justifyContent="center"
+        position="sticky"
+        top={0}
+        zIndex={10}
+        backgroundColor="primary.800"
       >
         <Box w={20}>
           {history.length > 0 && showBack && (

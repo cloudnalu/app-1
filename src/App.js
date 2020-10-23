@@ -20,7 +20,7 @@ function App() {
               alignItems="center"
               px={[0, "5vh"]}
               justifyContent="flex-end"
-              minH="100vh"
+              minH={["-webkit-fill-available", "100vh"]}
               backgroundColor="primary.50"
             >
               <Flex
@@ -34,7 +34,7 @@ function App() {
               </Flex>
               <Box
                 backgroundColor="white"
-                height={["100vh", "90vh"]}
+                height={["-webkit-fill-available", "90vh"]}
                 width={["100vw", 400]}
                 borderRadius={[0, 40]}
                 overflow="auto"

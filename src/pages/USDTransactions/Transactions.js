@@ -30,6 +30,41 @@ const transactions = [
     date: new Date(),
     otherInfo: "string",
   },
+  {
+    id: "978sdfg967asdf",
+    amount: "2000.20",
+    confirmed: true,
+    date: new Date(),
+    otherInfo: "string",
+  },
+  {
+    id: "978sdfg967asdf",
+    amount: "2000.20",
+    confirmed: true,
+    date: new Date(),
+    otherInfo: "string",
+  },
+  {
+    id: "978sdfg967asdf",
+    amount: "2000.20",
+    confirmed: true,
+    date: new Date(),
+    otherInfo: "string",
+  },
+  {
+    id: "978sdfg967asdf",
+    amount: "2000.20",
+    confirmed: true,
+    date: new Date(),
+    otherInfo: "string",
+  },
+  {
+    id: "978sdfg967asdf",
+    amount: "2000.20",
+    confirmed: true,
+    date: new Date(),
+    otherInfo: "string",
+  },
 ];
 
 export const Transactions = () => {

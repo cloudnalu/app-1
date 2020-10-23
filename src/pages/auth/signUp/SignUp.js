@@ -64,11 +64,13 @@ export const SignUp = () => {
             </Button>
           </Stack>
         </form>
-        <Stack flexGrow={1} justifyContent="flex-end">
-          <Text fontSize="sm" color="primary.800">
-            Already have an account?
-          </Text>
-        </Stack>
+        {!isMobile && (
+          <Stack flexGrow={1} justifyContent="flex-end">
+            <Text fontSize="sm" color="primary.800">
+              Already have an account?
+            </Text>
+          </Stack>
+        )}
       </Stack>
       {isMobile ? (
         <FixedBottom>
