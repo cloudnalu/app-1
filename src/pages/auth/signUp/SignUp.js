@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import SignUpContext from "./SignUpContext";
 import { FixedBottom } from "react-fixed-bottom";
-import { isMobile } from "react-device-detect";
+import { isMobileOnly } from "react-device-detect";
 
 export const SignUp = () => {
   const history = useHistory();
@@ -64,7 +64,7 @@ export const SignUp = () => {
             </Button>
           </Stack>
         </form>
-        {!isMobile && (
+        {!isMobileOnly && (
           <Stack flexGrow={1} justifyContent="flex-end">
             <Text fontSize="sm" color="primary.800">
               Already have an account?
@@ -72,7 +72,7 @@ export const SignUp = () => {
           </Stack>
         )}
       </Stack>
-      {isMobile ? (
+      {isMobileOnly ? (
         <FixedBottom>
           <Button
             variantColor="primary"

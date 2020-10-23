@@ -22,7 +22,7 @@ import { useForm } from "react-hook-form";
 import { isCurrency } from "validator";
 import USDContext from "./USDContext";
 import { FixedBottom } from "react-fixed-bottom";
-import { isMobile } from "react-device-detect";
+import { isMobileOnly } from "react-device-detect";
 // TODO: pull these accounts from somehwere
 const bankAccounts = [
   { value: "1234", text: "BANK ACCOUNT *1234" },
@@ -157,7 +157,7 @@ export const DepositWithdraw = () => {
         </Tabs>
         <Form type={tabIndex === 0 ? "deposit" : "withdraw"} />
       </Stack>
-      {isMobile ? (
+      {isMobileOnly ? (
         <FixedBottom>
           <Button
             variantColor="primary"
