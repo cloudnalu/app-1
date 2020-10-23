@@ -4,7 +4,7 @@ To add API calls see each context in `pages/<page>/<page>Context.js`. At the mom
 
 There are also some filler contstants defined at the top of a few pages, such as the transactions list and the list of bank accounts. These are all marked with `TODO`.
 
-Also make sure to check and update the youtube embed and links in `pages/bitcoin/Buy.js`.
+Also make sure to check and update the youtube embed and links in `pages/bitcoin/Buy.js`, rename app in `public/manifest.json` and `public/index.html`, and add a new favicon.
 
 # Create React App Details
 
