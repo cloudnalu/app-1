@@ -24,7 +24,7 @@ export const Confirmation = () => {
         <ConfirmationBox
           heading={`SENDING $${formData?.amount} USD`}
           lines={[`From $${formData?.from}`, `To $${formData?.to}`]}
-          onGoBack={() => history.back()}
+          onGoBack={() => history.goBack()}
           onConfirm={async () => {
             setLoading(true);
             try {

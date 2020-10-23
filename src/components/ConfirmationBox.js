@@ -1,6 +1,7 @@
 import React from "react";
 import { Stack, Heading, Text, Button, Spinner } from "@chakra-ui/core";
 import { useHistory } from "react-router-dom";
+import PropTypes from "prop-types";
 
 export const ConfirmationBox = ({
   heading,
@@ -57,4 +58,13 @@ export const ConfirmationBox = ({
       )}
     </Stack>
   );
+};
+
+ConfirmationBox.propTypes = {
+  heading: PropTypes.string,
+  lines: PropTypes.arrayOf(PropTypes.string),
+  onGoBack: PropTypes.func,
+  onConfirm: PropTypes.func,
+  loading: PropTypes.bool,
+  error: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
 };

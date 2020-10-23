@@ -1,5 +1,10 @@
 import { theme } from "@chakra-ui/core";
 
+/**
+ * This file contains the custom chakra ui theme for the app,
+ * see https://chakra-ui.com/theme for more details
+ */
+
 export default {
   ...theme,
   colors: {

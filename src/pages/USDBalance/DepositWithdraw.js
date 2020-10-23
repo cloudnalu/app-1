@@ -44,7 +44,7 @@ export const DepositWithdraw = () => {
 
   const onSubmit = (data) => {
     setFormData(data);
-    setTransactionType(tabIndex === 0 ? "deposit" : "withdrawal");
+    setTransactionType(tabIndex === 0 ? "deposit" : "withdraw");
     history.push("/usd/confirm");
   };
 
@@ -156,7 +156,7 @@ export const DepositWithdraw = () => {
             <Tab>WITHDRAW</Tab>
           </TabList>
         </Tabs>
-        <Form type={tabIndex === 0 ? "deposit" : "withdrawal"} />
+        <Form type={tabIndex === 0 ? "deposit" : "withdraw"} />
       </Stack>
       <Button
         variantColor="primary"

@@ -15,6 +15,7 @@ export const Home = () => {
 
   return (
     <Layout showBack={false}>
+      {/* if the user is logged in show them the logout button, otherwise show the signup/login button */}
       {user ? (
         <HomeRowItem
           backgroundColor="#c6f5f4"
@@ -55,10 +56,11 @@ export const Home = () => {
             heading="BITCOIN"
             subheading="BUY / SELL"
           />
-          {/* TODO: unsure what this button is meant to link to */}
+
+          {/* TODO: this item is disabled, unsure what this button is meant to link to */}
           <HomeRowItem
             backgroundColor="#f4d8ca"
-            onClick={() => console.log("not implemented")}
+            onClick={() => console.log("services not implemented")}
             icon={<BiPlus size={50} style={{ color: "white" }} />}
             heading="SERVICES"
             subheading="BANKING, CUSTODY & MORE"

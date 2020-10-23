@@ -1,7 +1,11 @@
 import React from "react";
 import "./done.css";
 import { Stack } from "@chakra-ui/core";
+import PropTypes from "prop-types";
 
+/**
+ * Custom Done Box with CSS gradient from ./done.css
+ */
 export const DoneBox = ({ children }) => {
   return (
     <Stack
@@ -17,4 +21,8 @@ export const DoneBox = ({ children }) => {
       {children}
     </Stack>
   );
+};
+
+DoneBox.propTypes = {
+  children: PropTypes.node,
 };

@@ -1,35 +1,29 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialUser = localStorage.getItem("user")
-  ? JSON.parse(localStorage.getItem("user"))
-  : null;
-
-// Slice
+// Slice for user
 const slice = createSlice({
   name: "user",
   initialState: {
-    user: initialUser,
+    user: null,
   },
   reducers: {
     loginSuccess: (state, action) => {
       state.user = action.payload;
-      localStorage.setItem("user", JSON.stringify(action.payload));
     },
     logoutSuccess: (state, action) => {
       state.user = null;
-      localStorage.removeItem("user");
     },
   },
 });
 
 export default slice.reducer;
 
-// Actions
+// Actions for logging in and out
 const { loginSuccess, logoutSuccess } = slice.actions;
 
 export const login = ({ phoneNumber, password }) => async (dispatch) => {
   try {
-    // TODO: authorize the user
+    // TODO: authorize the user with an API
     dispatch(loginSuccess({ phoneNumber }));
   } catch (e) {
     return console.error(e.message);

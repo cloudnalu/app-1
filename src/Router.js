@@ -1,13 +1,17 @@
 import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import { Home } from "./pages/Home";
 import { SignUpRouter } from "./pages/auth/signUp/SignUpRouter";
 import { LogIn } from "./pages/auth/LogIn";
 import { USDRouter } from "./pages/USDBalance/USDRouter";
 import { Transactions } from "./pages/USDTransactions/Transactions";
 import { BitcoinRouter } from "./pages/bitcoin/BitcoinRouter";
+import { useSelector } from "react-redux";
+import { Error404 } from "./pages/Error404";
 
 export const Router = () => {
+  const { user } = useSelector((state) => state.user);
+
   return (
     <BrowserRouter>
       <Switch>
@@ -15,20 +19,20 @@ export const Router = () => {
           <Home />
         </Route>
         <Route path="/signup">
-          <SignUpRouter />
+          {!user ? <SignUpRouter /> : <Redirect to="/" />}
         </Route>
-        <Route path="/login">
-          <LogIn />
-        </Route>
-        <Route path="/usd">
-          <USDRouter />
-        </Route>
+        <Route path="/login">{!user ? <LogIn /> : <Redirect to="/" />}</Route>
+        <Route path="/usd">{user ? <USDRouter /> : <Redirect to="/" />}</Route>
         <Route path="/transactions">
-          <Transactions />
+          {user ? <Transactions /> : <Redirect to="/" />}
         </Route>
         <Route path="/bitcoin">
-          <BitcoinRouter />
+          {user ? <BitcoinRouter /> : <Redirect to="/" />}
         </Route>
+        <Route path="/404">
+          <Error404 />
+        </Route>
+        <Redirect to="/404" />
       </Switch>
     </BrowserRouter>
   );

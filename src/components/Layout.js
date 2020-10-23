@@ -1,6 +1,16 @@
 import React from "react";
-import { Box, Flex, Stack, Heading, Button, Icon } from "@chakra-ui/core";
-import { useHistory } from "react-router-dom";
+import {
+  Box,
+  Flex,
+  Stack,
+  Heading,
+  Button,
+  Icon,
+  Tooltip,
+} from "@chakra-ui/core";
+import { useHistory, useLocation } from "react-router-dom";
+import { BsGridFill } from "react-icons/bs";
+import PropTypes from "prop-types";
 
 export const Layout = ({
   children,
@@ -9,6 +19,7 @@ export const Layout = ({
   backgroundColor = "primary.800",
 }) => {
   const history = useHistory();
+  const location = useLocation();
   return (
     <Flex
       backgroundColor={backgroundColor}
@@ -26,9 +37,11 @@ export const Layout = ({
       >
         <Box w={20}>
           {history.length > 0 && showBack && (
-            <Button variant="link" onClick={() => history.goBack()}>
-              <Icon name="arrow-back" color="white" size={8} />
-            </Button>
+            <Tooltip label="Back" placement="bottom" bg="primary.600">
+              <Button variant="link" onClick={() => history.goBack()}>
+                <Icon name="arrow-back" color="white" size={8} />
+              </Button>
+            </Tooltip>
           )}
         </Box>
 
@@ -38,11 +51,26 @@ export const Layout = ({
           </Heading>
         </Box>
 
-        <Box w={20} />
+        <Box w={20}>
+          {location.pathname !== "/" && (
+            <Tooltip label="Return Home" placement="bottom" bg="primary.600">
+              <Button variant="link" onClick={() => history.push("/")}>
+                <BsGridFill color="white" size="1.75em" />
+              </Button>
+            </Tooltip>
+          )}
+        </Box>
       </Stack>
       <Flex direction="column" flexGrow={1} overflowY="scroll">
         {children}
       </Flex>
     </Flex>
   );
+};
+
+Layout.propTypes = {
+  children: PropTypes.node,
+  title: PropTypes.string,
+  showBack: PropTypes.bool,
+  backgroundColor: PropTypes.string,
 };

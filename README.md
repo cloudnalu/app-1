@@ -1,3 +1,13 @@
+# How to Add API to App
+
+To add API calls see each context in `pages/<page>/<page>Context.js`. At the moment there are `settimeout`s to simulate network events, replace these with async functions which resolve or throw errors. This will make use of the loading and error states already built into the app.
+
+There are also some filler contstants defined at the top of a few pages, such as the transactions list and the list of bank accounts. These are all marked with `TODO`.
+
+Also make sure to check and update the youtube embed and links in `pages/bitcoin/Buy.js`.
+
+# Create React App Details
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -45,24 +55,24 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 ### Code Splitting
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+This section has moved here: <https://facebook.github.io/create-react-app/docs/code-splitting>
 
 ### Analyzing the Bundle Size
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+This section has moved here: <https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size>
 
 ### Making a Progressive Web App
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+This section has moved here: <https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app>
 
 ### Advanced Configuration
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+This section has moved here: <https://facebook.github.io/create-react-app/docs/advanced-configuration>
 
 ### Deployment
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+This section has moved here: <https://facebook.github.io/create-react-app/docs/deployment>
 
 ### `npm run build` fails to minify
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+This section has moved here: <https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify>

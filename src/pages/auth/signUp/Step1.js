@@ -33,7 +33,7 @@ export const Step1 = () => {
     getValues,
   } = useForm();
 
-  const { setSignUpData, signUpData } = useContext(SignUpContext);
+  const { setSignUpData } = useContext(SignUpContext);
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmationPassword, setShowConfirmationPassword] = useState(
@@ -54,7 +54,6 @@ export const Step1 = () => {
         <Text fontSize="xl" color="primary.800">
           Tell us more info about yourself
         </Text>
-        <p>{JSON.stringify(signUpData)}</p>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Stack pt={5} pb={30}>
             <FormControl>
@@ -92,7 +91,7 @@ export const Step1 = () => {
                 name="email"
                 type="email"
                 ref={register({
-                  required: true,
+                  required: "This field is required",
                   validate: (input) =>
                     isEmail(input) || <span>Email is invalid</span>,
                 })}
@@ -104,7 +103,7 @@ export const Step1 = () => {
               />
               <FormHelperText>
                 {errors.email && (
-                  <Text color="red.500">This field is required</Text>
+                  <Text color="red.500">{errors.email.message}</Text>
                 )}
               </FormHelperText>
             </FormControl>
@@ -249,6 +248,7 @@ export const Step1 = () => {
                     },
                   })}
                   variant="filled"
+                  focusBorderColor="primary.800"
                 />
                 <InputRightElement width="4.5rem">
                   <Button
@@ -300,6 +300,7 @@ export const Step1 = () => {
                       ),
                   })}
                   variant="filled"
+                  focusBorderColor="primary.800"
                 />
                 <InputRightElement width="4.5rem">
                   <Button

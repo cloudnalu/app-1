@@ -6,13 +6,15 @@ import { useHistory } from "react-router-dom";
 
 export const Verification = () => {
   const history = useHistory();
-  const { verified } = useContext(SignUpContext);
+  const { verified, error } = useContext(SignUpContext);
 
   return (
     <Layout showBack={false} backgroundColor="white">
       <Flex justifyContent="center" alignItems="center" flexGrow={1}>
         <Stack
-          backgroundColor="primary.100"
+          backgroundColor={
+            verified === false || error ? "red.100" : "primary.100"
+          }
           width="80%"
           alignItems="center"
           px={5}
@@ -37,25 +39,19 @@ export const Verification = () => {
               </Button>
             </>
           )}
-          {verified === false && (
+          {(verified === false || error) && (
             <>
-              <Icon size={150} name="close" color="primary.800" my={50} />
-              <Heading size="sm" mt={5} color="primary.800">
+              <Icon size={150} name="close" color="red.800" my={50} />
+              <Heading size="sm" mt={5} color="red.800">
                 FAILED TO VERIFY
               </Heading>
-              <Text>Your account failed to be verified</Text>
-              <Button
-                variantColor="primary"
-                mt={5}
-                size="lg"
-                backgroundColor="primary.800"
-                onClick={() => history.push("/")}
-              >
+              <Text>{error || "Your account failed to be verified"}</Text>
+              <Button mt={5} size="lg" onClick={() => history.push("/")}>
                 RETURN HOME
               </Button>
             </>
           )}
-          {verified === null && (
+          {verified === null && !error && (
             <>
               <Heading size="sm" mt={5} color="primary.800">
                 VERIFYING NEW USER

@@ -1,5 +1,6 @@
 import React from "react";
-import { Flex, Box, Heading, Text, Stack, Button } from "@chakra-ui/core";
+import { Box, Heading, Text, Stack, Button } from "@chakra-ui/core";
+import PropTypes from "prop-types";
 
 export const HomeRowItem = ({
   backgroundColor,
@@ -45,3 +46,12 @@ export const HomeRowItem = ({
     </Stack>
   </Button>
 );
+
+HomeRowItem.propTypes = {
+  backgroundColor: PropTypes.string,
+  onClick: PropTypes.func,
+  icon: PropTypes.node,
+  heading: PropTypes.string,
+  subheading: PropTypes.string,
+  disabled: PropTypes.bool,
+};

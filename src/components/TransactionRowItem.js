@@ -12,6 +12,7 @@ import {
   ListItem,
   List,
 } from "@chakra-ui/core";
+import PropTypes from "prop-types";
 
 export const TransactionRowItem = ({ details }) => (
   <AccordionItem border="none" my={10}>
@@ -81,3 +82,12 @@ export const TransactionRowItem = ({ details }) => (
     </AccordionPanel>
   </AccordionItem>
 );
+
+TransactionRowItem.propTypes = {
+  details: PropTypes.shape({
+    id: PropTypes.string,
+    amount: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    confirmed: PropTypes.bool,
+    date: PropTypes.instanceOf(Date),
+  }),
+};

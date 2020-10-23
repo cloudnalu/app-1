@@ -117,6 +117,7 @@ export const Address = () => {
                         ),
                 })}
                 onChange={() => reset({ btcAddressSelect: "" })}
+                isInvalid={!!errors.btcAddress}
               />
               <FormHelperText>
                 {errors.btcAddress && (
@@ -152,6 +153,7 @@ export const Address = () => {
                   mt={5}
                   name="btcAddressSelect"
                   onChange={() => reset({ btcAddress: "" })}
+                  isInvalid={!!errors.btcAddressSelect}
                 >
                   {btcAddresses.map((v) => (
                     <option key={v} value={v}>
@@ -199,7 +201,13 @@ export const Address = () => {
             >
               Don't have a wallet yet?
             </Text>
-            <Button as="a" href={downloadAndInstallLink} variantColor="primary">
+            <Button
+              as="a"
+              href={downloadAndInstallLink}
+              variantColor="primary"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
               DOWNLOAD & INSTALL BLUE WALLET
             </Button>
           </>

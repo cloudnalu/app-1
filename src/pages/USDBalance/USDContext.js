@@ -1,4 +1,4 @@
-import React, { createContext, useState, useCallback } from "react";
+import React, { createContext, useState } from "react";
 
 const USDContext = createContext({});
 export default USDContext;
@@ -12,7 +12,8 @@ export const USDContextProvider = ({ children }) => {
     // set timeout to simulate AJAX request
     return new Promise((resolve, reject) => {
       setTimeout(
-        () => reject("Error creating transaction, please try again later"),
+        // () => reject("Error creating transaction, please try again later"),
+        () => resolve(),
         1000
       );
     });
