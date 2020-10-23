@@ -31,7 +31,7 @@ export const SignUp = () => {
         <Heading color="primary.800">Aloha</Heading>
         <Text fontSize="xl" color="primary.800">
           Cloud Nalu is a bitcoin brokerage and services provider. Sign up and
-          verify you account to get started.
+          verify your account to get started.
         </Text>
         <Text fontSize="xl" color="primary.800" pt={5}>
           What is your phone number?
