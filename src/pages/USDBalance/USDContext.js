@@ -6,16 +6,17 @@ export default USDContext;
 export const USDContextProvider = ({ children }) => {
   const [formData, setFormData] = useState({});
   const [transactionType, setTransactionType] = useState("deposit");
-  const [error, setError] = useState(false);
 
-  const onConfirm = useCallback(() => {
-    // TODO: do something with the data
-    try {
-      console.log(formData);
-    } catch (error) {
-      // go to an error page
-    }
-  }, [formData]);
+  // TODO: set this to an async function which resolves when request is complete, and throws any errors with the message being displayed to the user
+  const onConfirm = async () => {
+    // set timeout to simulate AJAX request
+    return new Promise((resolve, reject) => {
+      setTimeout(
+        () => reject("Error creating transaction, please try again later"),
+        1000
+      );
+    });
+  };
 
   return (
     <USDContext.Provider
@@ -25,7 +26,6 @@ export const USDContextProvider = ({ children }) => {
         transactionType,
         setTransactionType,
         onConfirm,
-        error,
       }}
     >
       {children}

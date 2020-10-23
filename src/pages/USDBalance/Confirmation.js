@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import USDContext from "./USDContext";
 import { Layout } from "../../components/Layout";
 import { Flex } from "@chakra-ui/core";
@@ -6,8 +6,12 @@ import { useHistory } from "react-router-dom";
 import { ConfirmationBox } from "../../components/ConfirmationBox";
 
 export const Confirmation = () => {
-  const { formData, transactionType, onConfirm } = useContext(USDContext);
   const history = useHistory();
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+
+  const { formData, transactionType, onConfirm } = useContext(USDContext);
 
   return (
     <Layout title={`${transactionType} USD`.toUpperCase()}>
@@ -21,10 +25,18 @@ export const Confirmation = () => {
           heading={`SENDING $${formData?.amount} USD`}
           lines={[`From $${formData?.from}`, `To $${formData?.to}`]}
           onGoBack={() => history.back()}
-          onConfirm={() => {
-            onConfirm();
-            history.push("/usd/done");
+          onConfirm={async () => {
+            setLoading(true);
+            try {
+              await onConfirm();
+              history.push("/usd/done");
+            } catch (error) {
+              setError(error);
+            }
+            setLoading(false);
           }}
+          loading={loading}
+          error={error}
         />
       </Flex>
     </Layout>

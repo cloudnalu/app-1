@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Layout } from "../../components/Layout";
 import { Flex } from "@chakra-ui/core";
 import { ConfirmationBox } from "../../components/ConfirmationBox";
@@ -7,9 +7,13 @@ import BitcoinContext from "./BitcoinContext";
 
 export const Confirmation = () => {
   const history = useHistory();
-  const { address, amountBTC, amountUSD, account } = useContext(BitcoinContext);
 
-  const onConfirm = () => console.log("confirm");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+
+  const { address, amountBTC, amountUSD, account, onConfirm } = useContext(
+    BitcoinContext
+  );
 
   return (
     <Layout title="BUY BITCOIN">
@@ -27,10 +31,18 @@ export const Confirmation = () => {
             `To ${address}`,
           ]}
           onGoBack={() => history.goBack()}
-          onConfirm={() => {
-            onConfirm();
-            history.push("/usd/done");
+          onConfirm={async () => {
+            setLoading(true);
+            try {
+              await onConfirm();
+              history.push("/bitcoin/done");
+            } catch (error) {
+              setError(error);
+            }
+            setLoading(false);
           }}
+          loading={loading}
+          error={error}
         />
       </Flex>
     </Layout>

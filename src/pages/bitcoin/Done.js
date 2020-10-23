@@ -1,16 +1,16 @@
 import React, { useContext } from "react";
 import { Layout } from "../../components/Layout";
-import USDContext from "./USDContext";
 import { useHistory } from "react-router-dom";
 import { Flex, Heading, Text, Stack, Icon, Button } from "@chakra-ui/core";
 import { DoneBox } from "../../components/DoneBox";
+import BitcoinContext from "./BitcoinContext";
 
 export const Done = () => {
-  const { formData, transactionType, error } = useContext(USDContext);
   const history = useHistory();
+  const { amountBTC, amountUSD } = useContext(BitcoinContext);
 
   return (
-    <Layout title={`${transactionType} USD`.toUpperCase()}>
+    <Layout title="BUY BITCOIN">
       <Stack
         backgroundColor="white"
         flexGrow={1}
@@ -20,13 +20,15 @@ export const Done = () => {
         pt={10}
       >
         <DoneBox>
-          <Heading color="primary.800">${formData.amount}</Heading>
+          <Heading color="primary.800">${amountUSD}</Heading>
           <Text fontWeight="bold" color="primary.800">
-            You have sent ${formData.amount} USD
+            You have bought {amountBTC} BTC for ${amountUSD} USD
           </Text>
-          <Text color="primary.800" maxWidth="60%">
-            Transfers take 1-2 days. You will be notified when the transfer is
-            complete.
+          <Text color="primary.800" maxWidth="80%">
+            Average transaction time: 60m
+          </Text>
+          <Text color="primary.800" maxWidth="80%">
+            You will be notified when the transaction is complete.
           </Text>
           <Flex
             backgroundColor="primary.50"
@@ -39,13 +41,6 @@ export const Done = () => {
             <Icon name="check" color="primary.800" size={6} />
           </Flex>
         </DoneBox>
-        <Button
-          variantColor="primary"
-          mt={5}
-          onClick={() => history.push("/transactions")}
-        >
-          VIEW TRANSACTIONS
-        </Button>
         <Button
           variantColor="primary"
           mt={5}

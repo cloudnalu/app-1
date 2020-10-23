@@ -2,7 +2,6 @@ import React, { useContext, useState } from "react";
 import { Layout } from "../../components/Layout";
 import {
   Stack,
-  Heading,
   Tab,
   TabList,
   Tabs,
@@ -35,7 +34,9 @@ const cloudNaluAccounts = [
 ];
 
 export const Buy = () => {
-  const { address, setAmountUSD, setAccount } = useContext(BitcoinContext);
+  const { address, setAmountUSD, setAccount, btcPrice } = useContext(
+    BitcoinContext
+  );
 
   const [expandAddress, setExpandAddress] = useState(false);
 
@@ -162,7 +163,10 @@ export const Buy = () => {
                   YOU RECEIVE
                 </Text>
                 <Text fontSize="xl" color="primary.800">
-                  2 BTC
+                  {watch("amount")
+                    ? (parseFloat(watch("amount")) / btcPrice).toFixed(8)
+                    : 0}{" "}
+                  BTC
                 </Text>
               </Stack>
 

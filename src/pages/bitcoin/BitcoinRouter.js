@@ -4,6 +4,7 @@ import { BitcoinContextProvider } from "./BitcoinContext";
 import { Address } from "./Address";
 import { Buy } from "./Buy";
 import { Confirmation } from "./Confirmation";
+import { Done } from "./Done";
 
 export const BitcoinRouter = () => {
   return (
@@ -23,6 +24,10 @@ export const BitcoinRouter = () => {
 
         <Route path="/bitcoin/confirm">
           <Confirmation />
+        </Route>
+
+        <Route path="/bitcoin/done">
+          <Done />
         </Route>
       </Switch>
     </BitcoinContextProvider>
