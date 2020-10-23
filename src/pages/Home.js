@@ -14,7 +14,7 @@ export const Home = () => {
   const dispatch = useDispatch();
 
   return (
-    <Layout showBack={false}>
+    <Layout showBack={false} title="HOME">
       {/* if the user is logged in show them the logout button, otherwise show the signup/login button */}
       {user ? (
         <HomeRowItem

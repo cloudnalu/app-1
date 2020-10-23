@@ -4,6 +4,8 @@ import { Heading, Stack, Text, Button, Input } from "@chakra-ui/core";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import SignUpContext from "./SignUpContext";
+import { FixedBottom } from "react-fixed-bottom";
+import { isMobile } from "react-device-detect";
 
 export const SignUp = () => {
   const history = useHistory();
@@ -68,18 +70,35 @@ export const SignUp = () => {
           </Text>
         </Stack>
       </Stack>
-      <Button
-        variantColor="primary"
-        height="4em"
-        justifyContent="center"
-        onClick={() => history.push("/login")}
-        borderRadius={0}
-        width="100%"
-      >
-        <Heading size="sm" color="primary.800">
-          LOGIN
-        </Heading>
-      </Button>
+      {isMobile ? (
+        <FixedBottom>
+          <Button
+            variantColor="primary"
+            height="4em"
+            justifyContent="center"
+            onClick={() => history.push("/login")}
+            borderRadius={0}
+            width="100%"
+          >
+            <Heading size="sm" color="primary.800">
+              LOGIN
+            </Heading>
+          </Button>
+        </FixedBottom>
+      ) : (
+        <Button
+          variantColor="primary"
+          height="4em"
+          justifyContent="center"
+          onClick={() => history.push("/login")}
+          borderRadius={0}
+          width="100%"
+        >
+          <Heading size="sm" color="primary.800">
+            LOGIN
+          </Heading>
+        </Button>
+      )}
     </Layout>
   );
 };

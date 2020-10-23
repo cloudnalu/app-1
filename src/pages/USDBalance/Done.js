@@ -6,7 +6,7 @@ import { Flex, Heading, Text, Stack, Icon, Button } from "@chakra-ui/core";
 import { DoneBox } from "../../components/DoneBox";
 
 export const Done = () => {
-  const { formData, transactionType, error } = useContext(USDContext);
+  const { formData, transactionType } = useContext(USDContext);
   const history = useHistory();
 
   return (
