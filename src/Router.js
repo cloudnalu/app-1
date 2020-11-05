@@ -8,12 +8,15 @@ import { Transactions } from "./pages/USDTransactions/Transactions";
 import { BitcoinRouter } from "./pages/bitcoin/BitcoinRouter";
 import { useSelector } from "react-redux";
 import { Error404 } from "./pages/Error404";
+import { Security, SecureRoute, LoginCallback } from '@okta/okta-react';
+import config from './app.config'
 
 export const Router = () => {
   const { user } = useSelector((state) => state.user);
 
   return (
     <BrowserRouter>
+    <Security {...config}>
       <Switch>
         <Route path="/" exact>
           <Home />
@@ -21,19 +24,21 @@ export const Router = () => {
         <Route path="/signup">
           {!user ? <SignUpRouter /> : <Redirect to="/" />}
         </Route>
-        <Route path="/login">{!user ? <LogIn /> : <Redirect to="/" />}</Route>
-        <Route path="/usd">{user ? <USDRouter /> : <Redirect to="/" />}</Route>
-        <Route path="/transactions">
+        <Route path="/login" exact>{!user ? <LogIn /> : <Redirect to="/" />}</Route>
+        <SecureRoute path="/usd">{user ? <USDRouter /> : <Redirect to="/" />}</SecureRoute>
+        <SecureRoute path="/transactions">
           {user ? <Transactions /> : <Redirect to="/" />}
-        </Route>
-        <Route path="/bitcoin">
+        </SecureRoute>
+        <SecureRoute path="/bitcoin">
           {user ? <BitcoinRouter /> : <Redirect to="/" />}
-        </Route>
+        </SecureRoute>
+        <Route path="/implicit/callback" exact><LoginCallback/></Route>
         <Route path="/404">
           <Error404 />
         </Route>
         <Redirect to="/404" />
       </Switch>
+      </Security>
     </BrowserRouter>
   );
 };

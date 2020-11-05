@@ -13,18 +13,21 @@ const slice = createSlice({
     logoutSuccess: (state, action) => {
       state.user = null;
     },
+    setUserSuccess: (state, action) => {
+      state.user = action.payload
+    }
   },
 });
 
 export default slice.reducer;
 
 // Actions for logging in and out
-const { loginSuccess, logoutSuccess } = slice.actions;
+const { loginSuccess, logoutSuccess, setUserSuccess } = slice.actions;
 
-export const login = ({ phoneNumber, password }) => async (dispatch) => {
+export const login = () => async (dispatch) => {
   try {
     // TODO: authorize the user with an API
-    dispatch(loginSuccess({ phoneNumber }));
+    return dispatch(loginSuccess());
   } catch (e) {
     return console.error(e.message);
   }
@@ -38,3 +41,12 @@ export const logout = () => async (dispatch) => {
     return console.error(e.message);
   }
 };
+
+export const setUser = (user) => async (dispatch) => {
+  try {
+    return dispatch(setUserSuccess(user));
+  }
+  catch (e) {
+    return console.error(e.message);
+  }
+}

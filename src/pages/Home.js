@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FaUserAlt } from "react-icons/fa";
 import { BiDollar, BiShuffle, BiPlus, BiListUl } from "react-icons/bi";
 import { Layout } from "../components/Layout";
@@ -6,22 +6,45 @@ import { useHistory } from "react-router-dom";
 import { logout } from "../store/user";
 import { useDispatch, useSelector } from "react-redux";
 import { HomeRowItem } from "../components/HomeRowItem";
+import { useOktaAuth } from '@okta/okta-react';
+import { setUser } from "../store/user";
+import { Loading } from '../components/Loading';
+
 
 export const Home = () => {
   const history = useHistory();
+  const { authState, authService } = useOktaAuth();
 
   const { user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    if (!authState.isAuthenticated) {
+      dispatch(setUser(null));
+    }
+    else {
+      authService.getUser().then(user => {
+        dispatch(setUser(user))
+      });
+    }
+  }, [authState, authService, dispatch])
+
+  const handleLogout = () => {
+    authService.logout().then(() => {
+      dispatch(logout());
+    });
+  }
+
   return (
     <Layout showBack={false} title="HOME">
       {/* if the user is logged in show them the logout button, otherwise show the signup/login button */}
-      {user ? (
+      { authState.isPending && <Loading/> }
+      { user && authState.isAuthenticated ? (
         <HomeRowItem
           backgroundColor="#c6f5f4"
-          onClick={() => dispatch(logout())}
+          onClick={() => handleLogout()}
           icon={<FaUserAlt size={50} style={{ color: "white" }} />}
-          heading={user.phoneNumber}
+          heading={user.name}
           subheading="LOGOUT"
         />
       ) : (

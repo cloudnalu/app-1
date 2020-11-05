@@ -11,11 +11,13 @@ import {
   FormHelperText,
   InputRightElement,
   InputGroup,
+  Link,
 } from "@chakra-ui/core";
 import { useForm } from "react-hook-form";
 import { login } from "../../store/user";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { useOktaAuth } from '@okta/okta-react';
 
 export const LogIn = () => {
   const { register, handleSubmit, errors } = useForm();
@@ -23,12 +25,17 @@ export const LogIn = () => {
 
   const dispatch = useDispatch();
   const history = useHistory();
+  const { authService } = useOktaAuth();
 
   const onSubmit = (data) => {
-    // TODO: authorise user within the login function in ../store/users
-    dispatch(login({ phoneNumber: data.phoneNumber }));
+    // TODO: authorize user within the login function in ../store/users
+    dispatch(login(data))
     history.push("/");
   };
+
+  const loginWithOkta = () => {
+    authService.login(window.location.origin);
+  }
 
   return (
     <Layout title="LOG IN">
@@ -121,6 +128,7 @@ export const LogIn = () => {
             </Button>
           </Stack>
         </form>
+        <Link onClick={loginWithOkta}>Login with Okta</Link>
       </Stack>
     </Layout>
   );
