@@ -9,16 +9,8 @@ import { BitcoinRouter } from "./pages/bitcoin/BitcoinRouter";
 import { useSelector } from "react-redux";
 import { Error404 } from "./pages/Error404";
 import { Security, SecureRoute, LoginCallback } from '@okta/okta-react';
-import { devConfig, qaConfig } from './app.config'
+import config from './app.config'
 
-var config;
-if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
-  config = devConfig;
-}
-else {
-  config = qaConfig;
-}
-console.log(config);
 export const Router = () => {
   const { user } = useSelector((state) => state.user);
 

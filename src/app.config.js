@@ -1,6 +1,6 @@
 const oktapreview = `https://cloudnalu.oktapreview.com`;
 
-const qaConfig = {
+const prodConfig = {
   url: oktapreview,
   issuer: `${oktapreview}/oauth2/default`,
   redirect_uri: `${window.location.origin}/implicit/callback`,
@@ -18,5 +18,14 @@ const devConfig = {
   pkce: true
 }
 
-export { qaConfig, devConfig };
+const getConfig = () => {
+    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+        return devConfig;
+    }
+    else {
+        return prodConfig;
+    }
+}
+
+export default getConfig();
 
